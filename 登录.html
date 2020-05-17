@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <link rel="short icon" type="images/x-icon" href="Resource/icon.png">
+    <title>张恒铭</title>
+    <style>
+        header {
+            background: rgb(40,133,202);
+            color: white;
+            text-align: center;
+            line-height: 44px;
+            font-size: 18px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            position: fixed;
+        }
+        body{
+            background: rgb(244,244,246)
+        }
+        .P3 input{
+            margin-left: 90px;
+            width: 60%;
+            height: 20px;
+            border: none;
+        }
+        .P4 img{
+            margin-top: 100px;
+            margin-left: 150px;
+        }
+        .C1 input{
+            border-radius: 10px;
+            background: blue;
+            color: white;
+            width: 300px;
+            height: 40px;
+            margin-top: 130px;
+            margin-left: 30px;
+        }
+        .second_div1{
+            width: 90%;
+            height: 50px;
+            margin: 5px 15px 0 15px;
+            background: white;
+            border: 1px solid #cccccc;
+            border-bottom: none;
+            border-radius: 10px 10px 0 0;
+            text-align: left;
+            line-height: 50px;
+            font-size: 20px;
+            text-indent: 24px;
+            text-align: center;
+        }
+        .second_div2{
+            width: 90%;
+            height: 50px;
+            margin: 0 15px 20px 15px;
+            background: white;
+            border: 1px solid #cccccc;
+            border-radius: 0 0 10px 10px;
+            text-align: left;
+            line-height: 50px;
+            font-size: 20px;
+            text-indent: 24px;
+        }
+        .second_div1 input{
+            border: none;
+        }
+        .second_div2 input{
+            border: none;
+        }
+    </style>
+    <script type="text/javascript" src="CommonClass.js"></script>
+</head>
+
+<body>
+<header>
+    <span>登录</span>
+</header>
+<div class="P4">
+    <img src="Resource/head.png" alt="">
+</div>
+<form action="">
+    <div class="second_div1">
+        <span>用户名：</span>
+        <input type="text" id="user"><br>
+    </div>
+    <div class="second_div2">
+        <span>密码：</span>
+        <input type="password" id="pwd"><br>
+    </div>
+</form>
+<div class="C1" id="btn"  >
+    <input type="button" value="登录" >
+</div>
+</body>
+
+<!--<script>-->
+<!--var btn = document.querySelector("#btn");-->
+<!--btn.onclick = function () {-->
+<!--var userName=encodeURIComponent(document.querySelector("#user").value);-->
+<!--var password=encodeURIComponent(document.querySelector("#pwd").value);-->
+<!--//第一步：创建请求对象xhr-->
+<!--var xhr = new XMLHttpRequest();-->
+<!--//第二步：建立与服务器端的连接-->
+<!--xhr.open('post','https://mockapi.eolinker.com/2ZhGVxjacb39010e6753bd9c02ee803e6e3bfeab6e8007c/login');-->
+<!--//   设置头信息，让数据以表单的形式传递给服务器-->
+<!--xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");-->
+<!--//    第三步：发送请求-->
+<!--xhr.send("username="+userName+"&pwd="+password);-->
+<!--//    第四步：接受服务端返回的数据-->
+<!--xhr.onreadystatechange = function (ev) {-->
+<!--if(xhr.readyState == 4 && xhr.status == 200){-->
+<!--var res = JSON.parse(xhr.responseText);-->
+<!--var str = res.data;-->
+<!--if (str == "登录成功"){-->
+<!--location.href = "我的小滴.html";-->
+<!--}else {-->
+<!--alter(str);-->
+<!--}-->
+<!--}-->
+<!--}-->
+<!--}-->
+<!--</script>-->
+<script>
+    var btn = document.querySelector("#btn");
+    btn.onclick = function () {
+        var userName = encodeURIComponent(document.querySelector("#user").value);
+        var password = encodeURIComponent(document.querySelector("#pwd").value);  var par3 = "username=" + userName + "&pwd=" + password;
+        request('post', 'login', par3, function (restr)
+        {
+            if (restr == "登录成功") {
+                window.localStorage.setItem("userName", userName);
+                location.href = "我的小滴.html";
+            } else {
+                alert(restr);
+            }
+        });
+    }
+</script>
+</html>

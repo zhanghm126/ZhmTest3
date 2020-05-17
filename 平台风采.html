@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link rel="short icon" href="Resource/icon.png">
+    <title>张恒铭</title>
+    <link rel="stylesheet" href="ExternalStyle.css">
+    <script type="text/javascript" src="CommonClass.js"></script>
+    <style>
+        article{
+            margin: 20px;
+        }
+        h3{
+            color:red;
+            font-size: 18px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #dddddd;
+        }
+        h4{
+            font-size: 14px;
+        }
+        article p{
+            font-size: 12px;
+            text-indent: 2em;
+            line-height: 2em;
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <center>
+        <span>平台风采</span>
+    </center>
+    <img style="margin-bottom: -60px;width: 100%" src="Resource/banner4.png" />
+</header>
+
+<section>
+    <article style="margin-top: 200px">
+        <h3>公司简介</h3>
+        <b><h4>华杉科技（北京）有限公司</h4></b>
+        <p>华杉科技(北京)有限公司一直秉承“在高薪和经验的路上，我们只做行业第一”，致力于为整个互联网科技行业输送高级技术人才、做好 每一款外包项目。</p>
+        <p>华杉科技（北京）有限公司是一家既专注于培养高级IT技术人才， 为学员提供定制化IT职业规划方案及意见咨询服务，又是国内领先的智 能手机软件外包服务商。公司原东方爱智技术总监，原58同城技术总 监共同创立。</p>
+        <p>华杉科技（北京）有限公司拥有业内知名的教研团队和雄厚的课程 研发能力，课程的快速迭代时刻紧跟当今较为流行的前沿技术、不同行 业的外包项目作为支撑，强有力的保证了学员的核心竞争力。强竞争力 的一线技术人员和完善的外包服务流程充分保证了每一款项目的顺利执行。</p>
+
+        <!--</p >-->
+        <h3 id="title"></h3>
+        <h4 id="subTitle"></h4>
+        <p id="info"></p >
+    </article>
+    <script>
+        //第一步：创建请求对象xhr
+        var xhr = new XMLHttpRequest();
+        //第二步：建立与服务器端的连接
+        xhr.open('get','https://mockapi.eolinker.com/2ZhGVxjacb39010e6753bd9c02ee803e6e3bfeab6e8007c/aboutus');
+        //   设置头信息，让数据以表单的形式传递给服务器
+        xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
+        //    第三步：发送请求
+        xhr.send();
+        //    第四步：接受服务端返回的数据
+        xhr.onreadystatechange = function () {
+            if(xhr.readyState == 4 && xhr.status == 200){
+                var res = JSON.parse(xhr.responseText);
+                var title_content = document.getElementById("title");
+                var subTitle_content = document.getElementById("subTitle");
+                var info_content = document.getElementById("info");
+                title_content.innerHTML = res.data.title;
+                subTitle_content.innerHTML = res.data.subTitle;
+                info_content.innerHTML = res.data.info;
+            }
+        }
+    </script>
+</section>
+
+<footer>
+    <a href="小滴服务.html"><img  src="Resource/nav10.png" /><span>小滴服务</span></a>
+    <a href="企业项目_钻石创业者_主页.html"><img src="Resource/nav20.png"/><span >企业项目</span></a>
+    <a href="服务流程"><img src="Resource/nav30.png" /><span >服务流程</span></a>
+    <a href=""><img  src="Resource/nav41.png" /><span style="color : red" >平台风采</span></a>
+    <a href="我的小滴.html"><img  src="Resource/nav50.png" /><span >我的小滴</span></a>
+</footer>
+</body>
+<script>
+    request('get', 'aboutus', " ", function (restr) {
+        var title_content = document.getElementById("title");
+        var subTitle_content = document.getElementById("subTitle");
+        var info_content = document.getElementById("info");
+
+        title_content.innerHTML = restr.title;
+        subTitle_content.innerHTML = restr.subTitle;
+        info_content.innerHTML = restr.info;
+    });
+</script>
+</html>
